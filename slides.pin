@@ -1,0 +1,262 @@
+#!/usr/bin/env pinpoint
+# Copyright (C) Sebastian Pipping <sebastian@pipping.org>
+# Licensed under CC-BY-SA 4.0
+
+[rgb45347b.ppm]
+[fill]
+[text-color=white]
+[shading-opacity=0.0]
+
+--
+*
+
+
+
+<b>Python JSON Emoji Crash Story</b>
+
+<i><span size='x-small'><tt>Sebastian Pipping &lt;sebastian@pipping.org&gt;</tt></span></i>
+
+
+
+
+\--
+<i><span size='x-small'>Berlin, 2020-02-18, v2
+Licensed under CC-BY-SA 4.0</span></i>
+
+--
+<b>DISCLAIMER</b>
+
+Slides were done with (GNOME pinpoint and)
+very tight time constraints.
+
+My apology, better slides next time!
+
+--
+1.
+
+Django in Berlin at ~170 companies
+
+https://github.com/hartwork/django-berlin#companies
+
+--
+2.
+
+Who has a friend running…
+  - Django 3 <3.0.1
+  - Django 2 <2.2.9
+  - Django 1 <1.11.27
+?
+
+--
+Please consider upgrading!
+
+<tt>CVE-2019-19844</tt>
+
+Potential <b>account hijack</b>
+via password reset form
+
+--
+https://www.djangoproject.com/weblog/2019/dec/18/security-releases/
+
+--
+3.
+
+Who has a friend running…
+
+     settings.DEBUG == True
+
+accessible by public internet?
+
+--
+4.
+
+Actual talk
+
+--
+<b>Python JSON Emoji Crash Story</b>
+
+--
+Tell a story
+
+Point out a problem
+
+Questions + Discussion
+
+--
+Environment:
+
+  - Django backend…
+    with Django REST Framework
+
+  - A JavaScript frontend
+    POST'ing JSON
+
+--
+<b>Flow of data</b>
+
+1. User input
+2. Form / HTML DOM
+3. JavaScript
+4. JSON (= ECMA-404)
+5. HTTP request with body
+6. Django REST Framework
+7. <tt>rest_framework.parsers.JSONParser</tt>
+8. De-serialization
+9. <i>Some action</i> (e.g. store into database)
+
+--
+<b>Unicode</b>
+
+<tt>U+0000</tt> — <tt>U+ffff</tt>
+<b>B</b>asic <b>M</b>ultilingual <b>P</b>lane
+
+<tt>U+10000</tt> — <tt>U+10ffff</tt>
+16 "astral" planes
+
+--
+<b>Emoji</b>
+
+beyond <tt>U+ffff</tt>
+
+i.e. need more than 4 hex digits
+
+--
+Example:
+
+Character 'GRINNING FACE'
+
+Code point: <tt>U+1F600</tt>
+Example glyph: 😀
+
+--
+Unicode characters in JSON
+
+a) character itself as UTF-8
+    (except <tt>U+0</tt> to <tt>U+1f</tt>, <tt>U+22</tt>, <tt>U+5C</tt>)
+
+b) escaped a la (regex:) \\\\u[0-9a-fA-F]{4}
+
+--
+Works, Python:
+<tt>
+In [1]: import json
+
+In [2]: json.loads('"😀"')  # plain UTF-8
+Out[2]: '😀'
+
+In [3]: json.loads('"\\ud83d\\ude00"')
+Out[3]: '😀'
+</tt>
+
+--
+1024 "high" surrogates (<tt>U+D800</tt>–<tt>U+DBFF</tt>)
+1024 "low" surrogates (<tt>U+DC00</tt>–<tt>U+DFFF</tt>)
+
+Pair of surrogates allows "addressing"
+any of the astral characters.
+
+This is the very idea behind UTF-16.
+
+(<tt>2**20 + 2**16 == 2**16 * 17</tt>)
+
+--
+Length of a string
+
+--
+Python:<tt>
+In : len('😀')
+Out: 1
+</tt>
+JavaScript:<tt>
+>> '😀'.length
+&lt;- 2
+</tt>
+
+--
+JavaScript:<tt>
+>> '😀'.split('')
+&lt;- Array [ "\\ud83d", "\\ude00" ]
+</tt>
+
+--
+What if buggy code italified like this?:
+
+JavaScript:<tt>
+>> input_text.replace(/./g, '&lt;em&gt;$&amp;&lt;/em&gt;')
+</tt>
+
+--
+We send <i>single surrogates</i>
+
+to the backend
+
+--
+JavaScript:<tt>
+>> '😀'.replace(/./g, '[$&amp;]').split('')
+&lt;- Array(6) [ "[", "\\ud83d", "]", "[", "\\ude00", "]" ]
+</tt>
+
+--
+How does <i>Python</i> deal with this?
+
+--
+Python:<tt>
+In : json.loads('"[\\\\ud83d][\\\\ude00]"')
+Out: '[\\ud83d][\\ude00]'
+</tt>
+
+--
+Surrogates in isolation
+   ==
+invalid characters
+
+--
+Python:<tt>
+In : json.loads('"[\\\\ud83d][\\\\ude00]"').encode('utf-8')
+[..]
+UnicodeEncodeError: 'utf-8' codec can't encode character
+  '\ud83d' in position 1: surrogates not allowed
+</tt>
+
+--
+Fixed for <tt>CharField</tt>
+
+in next release (3.9.4?) of
+
+Django REST Framework
+
+--
+https://github.com/encode/django-rest-framework/pull/7067
+
+https://github.com/encode/django-rest-framework/issues/7026
+
+--
+"Unfixed" in CPython's JSON decoder
+
+Considered a feature upstream
+
+Potentially for good reasons
+
+
+https://docs.python.org/3/library/json.html#character-encodings
+
+--
+<b>Playing with surrogate characters</b>
+
+<tt># pip3 install surrogates</tt>
+
+https://github.com/hartwork/surrogates#usage
+
+--
+<b>Consequences?</b>
+  - Produce error 500 on any(?) DRF deployed today
+  - (Read secrets if <tt>DEBUG=True</tt>)
+  - Catch early once 👍 or late everywhere 👎
+  - ?
+
+<b>Coping strategies?</b>
+
+
+<b>Thank you!</b>
+
+<i><span size='x-small'><tt>Sebastian Pipping &lt;sebastian@pipping.org&gt;</tt></span></i>
