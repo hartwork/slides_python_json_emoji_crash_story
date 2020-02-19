@@ -42,9 +42,9 @@ https://github.com/hartwork/django-berlin#companies
 2.
 
 Who has a friend running…
-  - Django 3 <3.0.1
-  - Django 2 <2.2.9
-  - Django 1 <1.11.27
+  - Django 3 &lt;3.0.1
+  - Django 2 &lt;2.2.9
+  - Django 1 &lt;1.11.27
 ?
 
 --
