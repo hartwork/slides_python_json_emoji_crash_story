@@ -215,7 +215,7 @@ Python:<tt>
 In : json.loads('"[\\\\ud83d][\\\\ude00]"').encode('utf-8')
 [..]
 UnicodeEncodeError: 'utf-8' codec can't encode character
-  '\ud83d' in position 1: surrogates not allowed
+  '\\ud83d' in position 1: surrogates not allowed
 </tt>
 
 --
