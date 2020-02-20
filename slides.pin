@@ -137,7 +137,7 @@ a) character itself as UTF-8
 b) escaped a la (regex:) \\\\u[0-9a-fA-F]{4}
 
 --
-Works, Python:
+Works, Python 3:
 <tt>
 In [1]: import json
 
@@ -163,7 +163,7 @@ This is the very idea behind UTF-16.
 Length of a string
 
 --
-Python:<tt>
+Python 3:<tt>
 In : len('😀')
 Out: 1
 </tt>
@@ -197,10 +197,10 @@ JavaScript:<tt>
 </tt>
 
 --
-How does <i>Python</i> deal with this?
+How does <i>Python 3</i> deal with this?
 
 --
-Python:<tt>
+Python 3:<tt>
 In : json.loads('"[\\\\ud83d][\\\\ude00]"')
 Out: '[\\ud83d][\\ude00]'
 </tt>
@@ -211,7 +211,7 @@ Surrogates in isolation
 invalid characters
 
 --
-Python:<tt>
+Python 3:<tt>
 In : json.loads('"[\\\\ud83d][\\\\ude00]"').encode('utf-8')
 [..]
 UnicodeEncodeError: 'utf-8' codec can't encode character
