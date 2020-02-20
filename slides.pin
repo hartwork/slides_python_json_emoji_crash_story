@@ -249,8 +249,9 @@ https://github.com/hartwork/surrogates#usage
 
 --
 <b>Consequences?</b>
+  - <tt>.encode('utf-8')</tt> can fail
   - Produce error 500 on any(?) DRF deployed today
-  - (Read secrets if <tt>DEBUG=True</tt>)
+  - (Read unmasked Django secrets if <tt>DEBUG=True</tt>)
   - Catch early once 👍 or late everywhere 👎
   - ?
 
