@@ -253,6 +253,8 @@ What about <i>other</i> JSON decoders?
 --
 <tt>hjson             — passes through
 
+hyperjson         — error, weird message
+
 ijson             — passes through, swallows next char
 
 jsonlib-python3   — error, good message; dead, buggy
@@ -263,7 +265,7 @@ python-rapidjson  — error, good message
 
 simplejson        — passes through
 
-ujson             — ?; fails to import, dead
+ujson(-segfault)  — error, good message; dead
 
 yajl              — passes through, swallows next char</tt>
 
