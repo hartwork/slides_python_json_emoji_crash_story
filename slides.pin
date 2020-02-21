@@ -36,6 +36,7 @@ My apology, better slides next time!
 
 Django in Berlin at ~170 companies
 
+-- [qrcodes/django_berlin_companies.png] [bottom-right]
 https://github.com/hartwork/django-berlin#companies
 
 --
@@ -55,7 +56,7 @@ Please consider upgrading!
 Potential <b>account hijack</b>
 via password reset form
 
---
+-- [qrcodes/django_cve_2019_19844.png] [bottom-right]
 https://www.djangoproject.com/weblog/2019/dec/18/security-releases/
 
 --
@@ -225,9 +226,7 @@ in next release (3.9.4?) of
 
 Django REST Framework
 
---
-https://github.com/encode/django-rest-framework/pull/7067
-
+-- [qrcodes/drf_issue_7026.png] [bottom-right]
 https://github.com/encode/django-rest-framework/issues/7026
 
 --

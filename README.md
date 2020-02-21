@@ -29,10 +29,10 @@ version 0.1.8; it has a
 
 Slides can then be rendered to PDF…
 ```console
-# pinpoint -o python-json-emoji-crash-story-2020-02-18.pdf slides.pin
+# make
 ```
 
 …or browsed interactively:
 ```console
-# ./slides.pin
+# make images && ./slides.pin
 ```
