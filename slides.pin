@@ -183,7 +183,7 @@ JavaScript:<tt>
 What if buggy code italified like this?:
 
 JavaScript:<tt>
->> input_text.replace(/./g, '&lt;em&gt;$&amp;&lt;/em&gt;')
+>> my_text.replace(/./g, '&lt;em&gt;$&amp;&lt;/em&gt;')
 </tt>
 
 --
