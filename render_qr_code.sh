@@ -10,4 +10,4 @@ set -x
 
 qrencode -m 20 -s 3 -o "${filename}" "${text}"
 convert -colorspace RGB -fill '#5347bf' -opaque '#ffffff' "${filename}" "${filename}"
-optipng -o7 "${filename}"
+zopflipng -y "${filename}" "${filename}"
