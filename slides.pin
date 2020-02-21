@@ -145,7 +145,7 @@ In [1]: import json
 In [2]: json.loads('"😀"')  # plain UTF-8
 Out[2]: '😀'
 
-In [3]: json.loads('"\\ud83d\\ude00"')
+In [3]: json.loads('"\\\\ud83d\\\\ude00"')
 Out[3]: '😀'
 </tt>
 
