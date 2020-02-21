@@ -241,6 +241,63 @@ Potentially for good reasons
 https://docs.python.org/3/library/json.html#character-encodings
 
 --
+What about <i>other</i> JSON decoders?
+
+--
+<tt>hjson             — passes through
+
+ijson             — passes through, swallows next char
+
+jsonlib-python3   — error, good message; dead, buggy
+
+orjson            — error, weird message
+
+python-rapidjson  — error, good message
+
+simplejson        — passes through
+
+ujson             — ?; fails to import, dead
+
+yajl              — passes through, swallows next char</tt>
+
+--
+What about XML?
+
+What about YAML?
+
+--
+XML: <b>fine</b>!
+
+…with regard to invalid characters
+
+--
+<b>ElementTree</b>, Python 3:<tt>
+In [1]: import xml.etree.ElementTree as ET
+In [2]: ET.fromstring('&lt;r&gt;&amp;#xd83d;&lt;/r&gt;')
+[..]
+ParseError: reference to invalid character number: line 1, column 3
+</tt>
+
+<b>minidom</b>, Python 3:<tt>
+In [1]: from xml.dom.minidom import parseString
+In [2]: parseString('&lt;r&gt;&amp;#xd83d;&lt;/r&gt;')
+[..]
+ExpatError: reference to invalid character number: line 1, column 3
+</tt>
+
+--
+YAML: <b><i>not</i> fine</b>
+
+--
+Python 3:<tt>
+In [1]: import yaml
+In [2]: yaml.safe_load('"\\ud83d"').encode('utf-8')
+[..]
+UnicodeEncodeError: 'utf-8' codec can't encode character
+  '\\ud83d' in position 0: surrogates not allowed
+</tt>
+
+--
 <b>Playing with surrogate characters</b>
 
 <tt># pip3 install surrogates</tt>
