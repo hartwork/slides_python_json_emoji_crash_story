@@ -221,7 +221,7 @@ UnicodeEncodeError: 'utf-8' codec can't encode character
 --
 Fixed for <tt>CharField</tt>
 
-in next release (3.9.4?) of
+in next release (3.12.0?) of
 
 Django REST Framework
 
