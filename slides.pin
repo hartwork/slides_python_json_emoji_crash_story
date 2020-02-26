@@ -272,9 +272,22 @@ ujson(-segfault)  — error, good message; dead
 yajl              — passes through, swallows next char</tt>
 
 --
+What about TOML?
+
 What about XML?
 
 What about YAML?
+
+--
+TOML: <b>fine</b>!
+
+--
+Python 3:<tt>
+In [1]: import tomlkit
+In [2]: tomlkit.parse('k = "\\\\uDFFF"')
+[..]
+InvalidUnicodeValueError: Invalid unicode value at line 1 col 6
+</tt>
 
 --
 XML: <b>fine</b>!
