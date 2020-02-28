@@ -261,7 +261,7 @@ jsonlib-python3   — error, good message; dead, buggy
 
 orjson            — error, weird message
 
-pysimdjson        — <i>could not test: requires AVX2</i>
+pysimdjson        — error, weird message; requires AVX2
 
 python-rapidjson  — error, good message
 
