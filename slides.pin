@@ -255,7 +255,7 @@ What about <i>other</i> JSON decoders?
 
 hyperjson         — error, weird message
 
-ijson             — passes through, swallows next char
+ijson             — passes through, drops next char
 
 jsonlib-python3   — error, good message; dead, buggy
 
@@ -267,9 +267,9 @@ python-rapidjson  — error, good message
 
 simplejson        — passes through
 
-ujson(-segfault)  — error, good message; dead
+ujson             — drops
 
-yajl              — passes through, swallows next char</tt>
+yajl              — passes through, drops next char</tt>
 
 --
 What about TOML?
