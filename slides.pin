@@ -123,7 +123,7 @@ beyond <tt>U+ffff</tt>
 i.e. need more than 4 hex digits
 
 --
-Example:
+<b>Example</b>
 
 Character 'GRINNING FACE'
 
@@ -131,7 +131,7 @@ Code point: <tt>U+1F600</tt>
 Example glyph: 😀
 
 --
-Unicode characters in JSON
+<b>Unicode characters in JSON</b>
 
 <tt>a</tt>) character itself as UTF-8
     (except <tt>U+0</tt> to <tt>U+1f</tt>, <tt>U+22</tt>, <tt>U+5C</tt>)
@@ -151,6 +151,8 @@ Out[3]: '😀'
 </tt>
 
 --
+<b>Surrogate Characters</b>
+
 1024 "high" surrogates (<tt>U+D800</tt>–<tt>U+DBFF</tt>)
 1024 "low" surrogates (<tt>U+DC00</tt>–<tt>U+DFFF</tt>)
 
