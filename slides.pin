@@ -334,7 +334,7 @@ https://github.com/hartwork/surrogates#usage
   - <tt>.encode('utf-8')</tt> can fail
   - Produce error 500 on any(?) DRF deployed today
   - (Read unmasked Django secrets if <tt>DEBUG=True</tt>)
-  - Catch early once 👍 or late everywhere 👎
+  - Catch early once… or late everywhere
   - ?
 
 <b>Coping strategies?</b>
