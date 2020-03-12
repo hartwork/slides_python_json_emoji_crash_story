@@ -5,6 +5,7 @@
 [rgb5347bf.ppm]
 [fill]
 [text-color=white]
+[font=Metropolis 60px]
 [shading-opacity=0.0]
 
 --
@@ -32,7 +33,7 @@ very tight time constraints.
 My apology, better slides next time!
 
 --
-1.
+<tt>1</tt>.
 
 Django in Berlin at ~170 companies
 
@@ -40,7 +41,7 @@ Django in Berlin at ~170 companies
 https://github.com/hartwork/django-berlin#companies
 
 --
-2.
+<tt>2</tt>.
 
 Who has a friend running…
   - Django 3 &lt;3.0.1
@@ -60,16 +61,16 @@ via password reset form
 https://www.djangoproject.com/weblog/2019/dec/18/security-releases/
 
 --
-3.
+<tt>3</tt>.
 
 Who has a friend running…
 
-     settings.DEBUG == True
+<tt>settings.DEBUG == True</tt>
 
-accessible by public internet?
+…accessible by public internet?
 
 --
-4.
+<tt>4</tt>.
 
 Actual talk
 
@@ -86,24 +87,24 @@ Questions + Discussion
 --
 Environment:
 
-  - Django backend…
-    with Django REST Framework
+  — Django backend…
+      with Django REST Framework
 
-  - A JavaScript frontend
-    POST'ing JSON
+  — A JavaScript frontend
+      POST'ing JSON
 
 --
 <b>Flow of data</b>
 
-1. User input
-2. Form / HTML DOM
-3. JavaScript
-4. JSON (= ECMA-404)
-5. HTTP request with body
-6. Django REST Framework
-7. <tt>rest_framework.parsers.JSONParser</tt>
-8. De-serialization
-9. <i>Some action</i> (e.g. store into database)
+<tt>1</tt>. User input
+<tt>2</tt>. Form / HTML DOM
+<tt>3</tt>. JavaScript
+<tt>4</tt>. JSON (= ECMA-404)
+<tt>5</tt>. HTTP request with body
+<tt>6</tt>. Django REST Framework
+<tt>7</tt>. <tt>rest_framework.parsers.JSONParser</tt>
+<tt>8</tt>. De-serialization
+<tt>9</tt>. <i>Some action</i> (e.g. store into database)
 
 --
 <b>Unicode</b>
@@ -132,10 +133,10 @@ Example glyph: 😀
 --
 Unicode characters in JSON
 
-a) character itself as UTF-8
+<tt>a</tt>) character itself as UTF-8
     (except <tt>U+0</tt> to <tt>U+1f</tt>, <tt>U+22</tt>, <tt>U+5C</tt>)
 
-b) escaped a la (regex:) \\\\u[0-9a-fA-F]{4}
+<tt>b</tt>) escaped a la (regex:) \\\\u[0-9a-fA-F]{4}
 
 --
 Works, Python 3:
