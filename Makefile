@@ -20,7 +20,11 @@ clean:
 	rm -f $(PDF_FILE)
 	rm -Rf qrcodes/
 
-$(PDF_FILE): slides.pin $(IMAGES)
+.PHONY: fonts-available
+fonts-available:
+	fc-list Metropolis, | grep -q .  # i.e. non-empty output
+
+$(PDF_FILE): slides.pin $(IMAGES) fonts-available
 	pinpoint -o $@ $<
 
 qrcodes/django_berlin_companies.png: | qrcodes
