@@ -233,11 +233,13 @@ Django REST Framework
 https://github.com/encode/django-rest-framework/issues/7026
 
 --
-"Unfixed" in CPython's JSON decoder
+<b>But…</b>
 
-Considered a feature upstream
+  • "Unfixed" in CPython's JSON decoder
 
-Potentially for good reasons
+  • Considered a feature upstream
+
+  • Potentially for good reasons
 
 --
 <i>"The RFC does not explicitly forbid JSON strings which contain byte sequences
@@ -275,11 +277,11 @@ ujson             — drops
 yajl              — passes through, drops next char</tt>
 
 --
-What about TOML?
+What about <b>TOML</b>?
 
-What about XML?
+What about <b>XML</b>?
 
-What about YAML?
+What about <b>YAML</b>?
 
 --
 TOML: <b>fine</b>!
