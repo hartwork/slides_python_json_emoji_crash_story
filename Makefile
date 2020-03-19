@@ -22,7 +22,7 @@ clean:
 
 .PHONY: fonts-available
 fonts-available:
-	fc-list Metropolis, | grep -q .  # i.e. non-empty output
+	fc-list 'Fivo Sans,' | grep -q .  # i.e. non-empty output
 
 $(PDF_FILE): slides.pin $(IMAGES) fonts-available
 	pinpoint -o $@ $<
